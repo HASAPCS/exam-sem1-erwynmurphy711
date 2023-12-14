@@ -22,11 +22,32 @@ public class FuelDepot {
 
     // Method to implement for a)
     public int nextTankToFill(int threshold) {
+        int count = 0;
+        int lowest = 99999999;
+        int index = 0;
+        while(count < tanks.size()){
+            if( tanks.get(count).getFuelLevel() < lowest){
+                lowest = tanks.get(count).getFuelLevel();
+            }
+            count++;
+        }
+        if(threshold > lowest){
+            for(int i = 0; i < tanks.size()-1; i++){
+                if(lowest == tanks.get(i).getFuelLevel()){
+                    index = i;
+                }
+            }
+            
+            return index;
+        }
+
+        return filler.getCurrentIndex();
         // Your implementation here
     }
 
     // Method to implement for b)
     public void moveToLocation(int locIndex) {
+        filler.setCurrentIndex(locIndex);
         // Your implementation here
     }
 }
